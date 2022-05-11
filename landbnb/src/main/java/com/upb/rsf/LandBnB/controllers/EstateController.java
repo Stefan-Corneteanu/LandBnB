@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Random;
 
 @Controller
-@RequestMapping("/estates")
+@RequestMapping("/")
 public class EstateController {
     private final EstateService estateService;
     public EstateController(EstateService estateService) {
@@ -29,7 +29,7 @@ public class EstateController {
     @GetMapping("/new")
     public String showAddEstateForm(Model model){
         model.addAttribute("estate",new Estate());
-        return "addestates";
+        return "addestates"; //create the .html file later
     }
 
     @PostMapping("/new")
@@ -37,7 +37,7 @@ public class EstateController {
         if(estate.getId()==null)
             estate.setId(new Random().nextLong());
         estateService.save(estate);
-        return "redirect:/estates";
+        return "redirect:/"; //go to index.html, look for your post
     }
 
 }

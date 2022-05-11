@@ -20,24 +20,45 @@ public class UserController {
 
     //-populate the model with the retrieved users!
     //-select the appropriate view (navigation)
-    @GetMapping
+    /*
+    @GetMapping("/admin")
     public String viewUsers(Model model){
         model.addAttribute("users",userService.findAll());
         return "users";
     }
+    ///MIGHT BE USEFUL FOR AN ADMIN PANEL
+     */
 
-    @GetMapping("/new")
+    //redone the mappings for users
+    @GetMapping("/signup")
     public String showAddUserForm(Model model){
         model.addAttribute("user",new User());
-        return "addusers";
+        return "signup";
     }
 
-    @PostMapping("/new")
+    @PostMapping("/signup")
     public String addUser(User user){
         if(user.getId()==null)
             user.setId(new Random().nextLong());
         userService.save(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
+    //should do sth similar for login
+
+    @GetMapping("/login")
+    public String showLoginForm(Model model){
+        model.addAttribute("user",new User());
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(User user){
+        for (User u : userService.findAll()){
+            if (user.equals(u)){
+                //code for login as user
+            }
+        }
+        return "redirect:/";
+    }
 }

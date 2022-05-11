@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface EstateService {
     List<Estate> findAll();
-    void save(Estate e);
+    Estate save(Estate e);
 }
